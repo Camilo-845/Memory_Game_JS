@@ -15,14 +15,22 @@
 }
 
 body {
-    background-color: var(--charcoal);
-    font-family: Arial, sans-serif;
+    background-color: var(--jet-hsl);
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--carrot-orange);
 }
 
 main {
@@ -31,21 +39,28 @@ main {
     align-items: center;
 }
 
-.card-container {
+.tablero {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 600px; /* Ancho máximo */
+    padding: 20px;
+    background-color: var(--blue-munsell);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 19px 9px var(--carrot-orange);
+    -moz-box-shadow: 0 0 19px 9px var(--carrot-orange);
+    box-shadow: 0 0 19px 9px var(--carrot-orange);
+}
+
+.contenedor-cartas {
     display: grid;
     grid-template-columns: repeat(var(--num-columns, 4), 1fr);
     gap: 15px;
-    margin-top: 20px;
-    width: 420px;
-    justify-items: center;
-    padding: 20px;
-    background-color: var(--blue-munsell);
-    border: 2px solid var(--carrot-orange);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.card {
+.carta {
     background-color: var(--yellow-green);
     border: 1px solid var(--charcoal);
     border-radius: 5px;
@@ -54,14 +69,94 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 40px;
     color: var(--charcoal);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, background-color 0.2s;
+    cursor: pointer; /* Cambiar cursor al pasar sobre la carta */
 }
 
-.card:hover {
+.carta:hover {
     transform: scale(1.05);
     background-color: var(--carrot-orange);
     color: #fff;
+}
+
+.carta.abierta {
+    animation: desplegarCarta 0.5s forwards; /* Cambiar a animación de despliegue */
+}
+
+@keyframes desplegarCarta {
+    from {
+        transform: scaleY(0); /* Comienza desde una escala de 0 en el eje Y */
+    }
+    to {
+        transform: scaleY(1); /* Termina en escala normal */
+    }
+}
+
+.carta.incorrecta {
+    animation: sacudir 0.5s forwards; /* Animación de sacudida para cartas incorrectas */
+}
+
+@keyframes sacudir {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+footer {
+    margin-top: 20px;
+    color: #fff;
+    background-color: var(--blue-munsell); /* Fondo para el contador */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-size: 24px; /* Tamaño de fuente más grande */
+    text-align: center; /* Centrar el texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar elementos en el footer */
+}
+
+#reiniciar {
+    background-color: var(--carrot-orange);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Espaciado superior */
+}
+
+#reiniciar:hover {
+    background-color: var(--yellow-green);
+}
+
+#iniciar-nuevo-juego {
+    background-color: var(--carrot-orange);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Espaciado a la izquierda */
+}
+
+#iniciar-nuevo-juego:hover {
+    background-color: var(--yellow-green);
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid var(--charcoal);
+    margin-right: 10px; /* Espaciado a la derecha */
 }

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Juego de Memoria</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script> <!-- Para el confeti -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <main>
+    <header>
         <h1>Juego de Memoria</h1>
-        <div class="card-container" id="card-container">
-        </div>
+    </header>
+    <main>
+        <section class="tablero">
+            <div class="contenedor-cartas" id="contenedor-cartas"></div>
+        </section>
+        <footer>
+            <p id="movimientos">Movimientos: 0</p>
+            <button id="reiniciar" style="display: none;">Reiniciar Juego</button> <!-- Botón de reinicio -->
+        </footer>
     </main>
     <script src="js/script.js"></script>
 </body>
